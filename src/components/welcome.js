@@ -6,11 +6,11 @@ export const welcome = () => {
 
   const title = document.createElement('h1');
   title.className = 'titleWelcome';
-  title.textContent = 'Enfiéstate todo el Año';
+  
 
-  const mensage = document.createElement('h2');
-  mensage.className = 'description';
+  const mensage = document.createElement('h1');
   mensage.textContent = 'Disfruta de las diferentes festividades alrededor del mundo.';
+  mensage.className = 'messageW';
 
   const buttonStart = document.createElement('button');
   buttonStart.className = 'button';

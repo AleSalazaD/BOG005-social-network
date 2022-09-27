@@ -12,6 +12,8 @@
 
 ## 1. Presentación
 
+
+
 cuéntanos brevemente cómo descubriste las necesidades de los usuarios y cómo llegaste a la definición final de tu producto. Es importante que detalles:
 
 Quiénes son los principales usuarios de producto.

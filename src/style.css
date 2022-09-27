@@ -3,17 +3,20 @@
     padding: 0;
     box-sizing: border-box;
     font-family: var(--fontFamily);
+    width: 100%;
 }
 
 :root {
     --fontFamily: 'Exo 2', sans-serif;
     --titleSize: 1.5rem;
+    /* linea 10 cambia tamaño de letra en landin=ENJOY THE WORDL
+    y en register =  REGISTRATE */
 }
 
 @media screen and (max-width: 1400px) {
 
     /* vista del register */
-    .container { 
+    .container {
         padding: auto;
         display: flex;
         position: absolute;
@@ -26,20 +29,13 @@
         flex-direction: column;
         text-align: center;
         align-content: center;
-    }       
+    }
 
     .titleR {
         text-align: center;
         margin-top: 10vh;
         font-size: var(--titleSize);
     }
-/* 
-    .img-register {
-        display: block;
-        margin: 0px auto;
-        position: relative;
-        text-align: center;
-    } */
 
     .input {
         padding: 3vh;
@@ -57,7 +53,7 @@
     #emailRegister,
     #inputName,
     #inputLastName {
-    margin-top: 6vh;
+        margin-top: 6vh;
     }
 
     .button {
@@ -87,6 +83,7 @@
     /* vista del login */
 
     /* vista welcome */
+
     .sectionWelcome {
         margin: 10px;
         background: #FFF8EE;
@@ -100,26 +97,27 @@
         flex-direction: column;
         justify-content: space-around;
         min-height: 850px;
+    };
 
-    }
-
-    .titleWelcome {
-        font-size: 30px;
+    .messageW{
         text-align: center;
+        margin-top: 10vh;
+        font-size: var(--titleSize);
+
     }
 
-    /* .imgWelcome {
-        min-height: 50px;
 
-    } */
 
-    /* .img-register{
-        align-content: center;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        flex-direction: column;
-    } */
+     .description { 
+
+        justify-content: space-around;
+
+
+    }
+
+
+
+
 }
 
 /* vistas del landing */
