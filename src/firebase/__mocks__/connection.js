@@ -15,3 +15,11 @@ export const getAuth = () => {
 export const register = (email, password) => {
   return Promise.resolve();
 };
+
+export const provider = () => {
+  return Promise.resolve();
+};
+
+export const googleSignIn = () => {
+  return Promise.resolve();
+};

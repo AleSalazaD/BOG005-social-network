@@ -1,5 +1,5 @@
 import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.10.0/firebase-app.js';
-import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged } from 'https://www.gstatic.com/firebasejs/9.10.0/firebase-auth.js';
+import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged, signInWithPopup, GoogleAuthProvider } from 'https://www.gstatic.com/firebasejs/9.10.0/firebase-auth.js';
 
 const firebaseConfig = {
   apiKey: 'AIzaSyB5L_8-iWK_fcuTnIWV4peHFJMmOL8v7Qo',
@@ -19,43 +19,104 @@ const auth = getAuth(app);
 const createUser = (email, password) => {
   createUserWithEmailAndPassword(auth, email, password)
     .then((userCredential) => {
-      // Signed in
+      // signed in
       const user = userCredential.user;
-      // ...
+      console.log(user);
+      console.log('oh yeah');
+      swal({
+        title: "Genial!",
+        text: "Conseguiste registrarte!",
+        icon: "success",
+        button: "Inicia tu viaje!",
+      });
     })
     .catch((error) => {
       const errorCode = error.code;
-      const errorMessage = error.message;
-      // ..
+      // const errorMessage = error.message;
+      console.log('ay no!')
+      if (errorCode === "auth/email-already-in-use") {
+        swal({
+          title: "Por favor verifica,",
+          text: "El usuario ya existe",
+          icon: "error",
+        });
+      }
+      else if (errorCode === "auth/invalid-email") {
+        swal({
+          title: "Ingresa un email válido, por favor.",
+          text: "debe tener formato de email",
+          icon: "error",
+        });
+      }
+      else if (errorCode === "auth/weak-password") {
+        swal({
+          title: "Tu contraseña es muy débil!,",
+          text: "Por favor usa más de seis caracteres",
+          icon: "error",
+        });
+      }
     });
 };
 
-const signInUser = () => {
-  signInWithEmailAndPassword(auth, email, password)
+const signInUser = (email, password) => {
+  console.log('email: ', email, 'password: ', password);
+  return signInWithEmailAndPassword(auth, email, password)
     .then((userCredential) => {
-      // Signed in
+      console.log(user, 'Signed in');
+      // signed in
       const user = userCredential.user;
-      // ...
+      //  ...
     })
     .catch((error) => {
       const errorCode = error.code;
       const errorMessage = error.message;
+      console.log(errorMessage);
     });
-}
+};
 
+// Detectando el estado de autenticación
 onAuthStateChanged(auth, (user) => {
-  if (user) {
-    // User is signed in, see docs for a list of available properties
-    // https://firebase.google.com/docs/reference/js/firebase.User
+  if (user != null) {
+    console.log('In Firebase');
+
     const uid = user.uid;
-    // ...
   } else {
-    // User is signed out
-    // ...
+    console.log('Not in Firebase');
   }
 });
 
-export { auth, createUser, signInUser };
+// signOut(auth).then(() => {
+//   // signout successful.
+// }).catch((error) => {
+//   // An error happened.
+// });
+
+// const user = auth.currentUser;
+// if (user !== null) {
+//   // The user object has basic properties such as display name, email, etc.
+//   const displayName = user.displayName;
+//   const email = user.email;
+//   const photoURL = user.photoURL;
+//   const emailVerified = user.emailVerified;
+
+// The user's ID, unique to the Firebase project. Do NOT use
+// this value to authenticate with your backend server, if
+// you have one. Use User.getToken() instead.
+//   const uid = user.uid;
+// }
+
+
+const provider = new GoogleAuthProvider();
+
+const googleSignIn = () => signInWithPopup(auth, provider)
+  .then((result) => {
+    //la redirijo segun ejm main al wall
+    window.location.pathname = '/wall';
+  }).catch((error) => {
+  });
+
+
+export { auth, createUser, signInUser, provider, googleSignIn };
 
 // ***1.Importar el código inicial provisto por Firebase (línea 1 y de 4 hasta 15 ) esa es la conexión con FBase y la id única de la App.
 // ***2.Importar el código de autenticación, el de crear usuario y el de loguear usuario línea y el del observador 2 (getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged)

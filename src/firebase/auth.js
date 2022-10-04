@@ -10,6 +10,8 @@ const createRegister = async (email, password) => {
   }
 };
 
+
+
 export { createRegister };
 
 // ***7. (viene del connection)Se importa la variable creada -createUser- que contiene
