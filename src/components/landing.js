@@ -14,8 +14,8 @@ export const landing = () => {
   title.className = 'titleL';
 
   const buttonRegisterG = document.createElement('button');
-  buttonRegisterG.textContent = 'Regístrate con Google';
-  buttonRegisterG.classList.add('buttonR');
+  // buttonRegisterG.textContent = 'Regístrate con Google';
+  buttonRegisterG.classList.add('buttonR1');
   buttonRegisterG.setAttribute('id', 'google');
 
   const buttonRegisterE = document.createElement('button');
@@ -32,6 +32,10 @@ export const landing = () => {
   buttonLogin.classList.add('button');
   buttonLogin.setAttribute('id', 'i-sesion');
 
+  const foot = document.createElement('h4');
+  foot.textContent = 'Información Centro de Ayuda';
+  foot.className = 'info';
+
   buttonRegisterG.addEventListener('click', () => {
     onNavigate('/register');
   });
@@ -43,7 +47,7 @@ export const landing = () => {
   buttonLogin.addEventListener('click', () => {
     onNavigate('/login');
   });
-  containerLanding.append(imgLogin, title, buttonRegisterG, buttonRegisterE, question, buttonLogin);
+  containerLanding.append(imgLogin, title, buttonRegisterG, buttonRegisterE, question, buttonLogin, foot);
 
   return containerLanding;
 };

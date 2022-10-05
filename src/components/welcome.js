@@ -5,9 +5,9 @@ export const welcome = () => {
   sectionWelcome.className = 'sectionWelcome';
 
   const imgWelcome = document.createElement('img');
-  imgWelcome.className = 'img-welcome';
-  imgWelcome.src = 'img/NomeLogo.png';
-  imgWelcome.alt = 'Name Logo';
+  imgWelcome.className = 'FondoWelcome';
+  imgWelcome.src = 'img/mundoverde.PNG';
+  imgWelcome.alt = 'Name';
 
   const message = document.createElement('h2');
   message.className = 'description';

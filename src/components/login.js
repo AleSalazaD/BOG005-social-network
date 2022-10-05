@@ -5,8 +5,9 @@ export const login = () => {
   const containerLogin = document.createElement('section');
   containerLogin.classList.add('container');
 
-  const title = document.createElement('h1');
-  title.textContent = 'ENJOY THE WORLD';
+  const titleLo = document.createElement('h1');
+  titleLo.textContent = 'ENJOY THE WORLD';
+  titleLo.className= 'titleLo'
 
   const imgLogin = document.createElement('img');
   imgLogin.className = 'img-login';
@@ -17,14 +18,14 @@ export const login = () => {
   loginForm.classList.add('form-login');
 
   const loginEmail = document.createElement('input');
-  loginEmail.classList.add('input');
+  loginEmail.classList.add('inputE');
   loginEmail.setAttribute('type', 'email');
   loginEmail.setAttribute('id', 'email-login');
   loginEmail.setAttribute('placeholder', 'E-mail');
   loginEmail.setAttribute('required', '');
 
   const loginPassword = document.createElement('input');
-  loginPassword.classList.add('input');
+  loginPassword.classList.add('inputL');
   loginPassword.setAttribute('type', 'password');
   loginPassword.setAttribute('id', 'password-login');
   loginPassword.setAttribute('placeholder', 'contraseña');
@@ -35,10 +36,14 @@ export const login = () => {
   loginButton.setAttribute('class', 'button-login button');
 
   const question = document.createElement('h3');
-  question.textContent = '¿Ya eres miembro?';
+  question.textContent = '¿Olvidaste tu contraseña?';
 
   const session = document.createElement('h3');
-  session.textContent = 'Inicia tu sesión';
+  session.textContent = 'Inicia sesión';
+
+  const iniciaTusecion = document.createElement('h3');
+  iniciaTusecion.textContent = 'Inicia sesión';
+  iniciaTusecion.className = 'here';
 
   loginButton.addEventListener('click', () => {
     onNavigate('/'); // Debería dirigir al Home, muro o perfil
@@ -53,12 +58,13 @@ export const login = () => {
   });
 
   containerLogin.append(
-    title,
+    titleLo,
     imgLogin,
     loginEmail,
     loginPassword,
     loginButton,
     question,
+    iniciaTusecion
   );
 
   return containerLogin;

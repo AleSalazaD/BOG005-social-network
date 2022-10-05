@@ -5,6 +5,11 @@ export const register = () => {
   const containerRegister = document.createElement('section');
   containerRegister.classList.add('container');
 
+  const imgLogin = document.createElement('img');
+  imgLogin.className = 'img-login';
+  imgLogin.src = '/img/logo.png';
+  imgLogin.alt = 'logo';
+
   const title = document.createElement('h1');
   title.textContent = 'REGISTRATE';
   title.className = 'titleR';
@@ -12,44 +17,38 @@ export const register = () => {
   const registerForm = document.createElement('section');
   registerForm.classList.add('formRegister');
 
-  const inputName = document.createElement('input');
-  inputName.classList.add('input');
-  inputName.setAttribute('type', 'text');
-  inputName.setAttribute('id', 'inputName');
-  inputName.setAttribute('placeholder', 'Nombre');
-  inputName.setAttribute('required', '');
-
-  const inputLastName = document.createElement('input');
-  inputLastName.classList.add('input');
-  inputLastName.setAttribute('type', 'text');
-  inputLastName.setAttribute('id', 'inputLastName');
-  inputLastName.setAttribute('placeholder', 'Apellido');
-  inputLastName.setAttribute('required', '');
+  const userName = document.createElement('input');
+  userName.classList.add('inputName');
+  userName.setAttribute('type', 'text');
+  // userName.setAttribute('id', 'userName');
+  userName.setAttribute('placeholder', 'User Name');
+  userName.setAttribute('required', '');
 
   const registerEmail = document.createElement('input');
-  registerEmail.classList.add('input');
+  registerEmail.classList.add('inputEmail');
   registerEmail.setAttribute('type', 'email');
-  registerEmail.setAttribute('id', 'emailRegister');
+  // registerEmail.setAttribute('id', 'emailRegister');
   registerEmail.setAttribute('placeholder', 'E-mail');
   registerEmail.setAttribute('required', '');
 
   const registerPassword = document.createElement('input');
-  registerPassword.classList.add('input');
+  registerPassword.classList.add('inputPass');
   registerPassword.setAttribute('type', 'password');
-  registerPassword.setAttribute('id', 'passwordRegister');
+  // registerPassword.setAttribute('id', 'passwordRegister');
   registerPassword.setAttribute('placeholder', 'contraseña');
   registerPassword.setAttribute('required', '');
 
   const registerButton = document.createElement('button');
   registerButton.textContent = 'Iniciar Sesión';
   registerButton.setAttribute('class', 'buttonRegister button');
+  registerButton.setAttribute('id', 'buttonStartRegister')
 
   const question = document.createElement('h3');
-  question.textContent = '¿Olvidaste tu Contraseña?';
+  question.textContent = '¿Ya eres miembro?';
   question.classList = 'question';
 
   const session = document.createElement('h3');
-  session.textContent = 'Aquí';
+  session.textContent = 'Inicia tu sesión';
   session.className = 'here';
 
   registerButton.addEventListener('click', () => {
@@ -88,8 +87,8 @@ export const register = () => {
   containerRegister.append(registerForm);
   registerForm.append(
     title,
-    inputName,
-    inputLastName,
+    imgLogin,
+    userName,
     registerEmail,
     registerPassword,
     registerButton,
