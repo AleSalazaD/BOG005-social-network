@@ -1,4 +1,4 @@
-// import { onNavigate } from '../main.js';
+import { onNavigate } from '../main.js';
 import { createUser } from '../firebase/connection.js';
 
 export const register = () => {
@@ -59,7 +59,7 @@ export const register = () => {
     createUser(emailRegister, passRegister)
       .then(() => {
         console.log('dentroooo');
-        // onNavigate('/wall');
+         onNavigate('/wall');
       })
       .catch(() => {
         console.log('fail');
