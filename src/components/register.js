@@ -1,5 +1,5 @@
 // import { onNavigate } from '../main.js';
-import { createUser } from '../firebase/connection.js';
+import { createUser, userProfile } from '../firebase/connection.js';
 import { onNavigate } from '../main.js';
 
 export const register = () => {
@@ -23,6 +23,7 @@ export const register = () => {
   userName.setAttribute('type', 'text');
   userName.setAttribute('placeholder', 'Usuario');
   userName.setAttribute('required', '');
+  userName.setAttribute('id', 'userName');
 
   const registerEmail = document.createElement('input');
   registerEmail.classList.add('input');
@@ -50,15 +51,19 @@ export const register = () => {
   session.setAttribute('href', '#');
   session.textContent = 'Inicia Sesión';
 
-  registerButton.addEventListener('click', () => {
+  registerButton.addEventListener('click', (e) => {
+    // preventDefault: evita que la entrada de texto no válido llegue al campo de entrada
+    e.preventDefault();
     const emailRegister = registerEmail.value;
     const passRegister = registerPassword.value;
-    console.log(emailRegister, passRegister);
+    const nameUser = userName.value;
+    console.log(emailRegister, passRegister, nameUser);
 
     createUser(emailRegister, passRegister)
-      .then(() => {
-        console.log('dentroooo');
-        // onNavigate('/wall');
+      .then((credential) => {
+        const user = credential.user;
+        console.log('dentroooo', user);
+        userProfile(user, nameUser);
       })
       .catch(() => {
         console.log('fail');

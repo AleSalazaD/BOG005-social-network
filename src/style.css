@@ -20,7 +20,7 @@
 }
 
 #containerWall {
-  margin: 5vh 5vh;
+  margin: 1vh 1vh;
   background-image: url("img/Fondo2.PNG");
   background-size: cover;
 }
@@ -105,7 +105,7 @@
     display: flex;
     flex-direction: column;
     background: #FFF8EE;
-    height: 110vh;
+    height: 100vh;
     padding-top: 5vh;
   }
 
@@ -156,7 +156,7 @@
   }
 
   /* vista del wall */
-  .header {
+  .header {    
     display: grid;
     justify-content: space-between;
     grid-template-columns: auto auto auto;
@@ -171,6 +171,11 @@
     transform: rotate(-25deg);
     top: 15px;
     right: 20px;
+  }
+
+  .userProfile {
+    text-align: center;
+    margin-right: 2vh;
   }
 
   #titleWall {
@@ -201,22 +206,23 @@
   }
 
   #iconContainer {
-    display: flex;
-    justify-content: right;
+    /* display: flex; */
     padding: 0.5vh;
     border-radius: 0 0 20px 20px;
     background-color: #FFF8EE;
     height: 7vh;
   }
 
-  #postZoneContainer {
-    /* padding-bottom: 12vh; */
-    /* padding-left: 10vh; */
-    padding-right: 10vh;
+  #postZoneContainer {    
+    padding-left: 3vh;    
     position: relative;
     border-radius: 20px;
-    width: 100vh;
+    /* width: 100vh; */
     height: auto;
+    /* display: flex; */
+    justify-content: space-around;
+    flex-flow: row wrap;
+    
   }
 
   /* estilo para los botones que contienen iconos */
@@ -237,14 +243,14 @@
   #btnSend {
     background-image: url('img/send.png');
     background-repeat: no-repeat;
-    margin-bottom: 1vh;
+    margin-top: 1vh;
     margin-left: 35vh;
   }
 
   .textPost {
-    /* margin: 0 2vh 5vh 0; */
+    margin: 2vh 2vh 3vh 0;
     font-size: 1.5rem;
-    text-align: center;
+    text-align: justify;    
   }
 
   #crudIcons {
@@ -412,8 +418,8 @@
     background-image: url('img/send.png');
     background-repeat: no-repeat;
 
-    /* margin-bottom: 1vh; */
-    /* margin-left: 35vh; */
+    margin-bottom: 1vh;
+    margin-left: 35vh;
   }
 
   .textPost {
@@ -423,8 +429,8 @@
   }
 
   #crudIcons {
-    display: flex;
-    /* gap: 20%; */
+    display: flex; 
+    gap: 20%;
     justify-content: center;
   }
 

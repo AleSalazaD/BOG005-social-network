@@ -1,11 +1,13 @@
 import { onNavigate } from '../main.js';
 import {
+  auth,
   createPosts,
   signOff,
   onGetPosts,
   deletePosts,
   editPosts,
   updatePosts,
+  onAuthStateChanged,
 } from '../firebase/connection.js';
 
 export const wall = () => {
@@ -21,6 +23,11 @@ export const wall = () => {
   imgTitle.src = 'img/nameLogo.png';
   imgTitle.alt = 'Logo';
   imgTitle.id = 'imgTitle';
+
+  // Nodo for the username
+  const profileName = document.createElement('h1');
+  profileName.className = 'userProfile';
+  profileName.textContent = window.user !== undefined ? window.user.displayName : '';
 
   const title = document.createElement('h1'); // Title
   title.textContent = '¿Qué festividad se celebra hoy en tu ciudad?';
@@ -62,6 +69,10 @@ export const wall = () => {
       const postBox = document.createElement('p'); // here lives the post after print
       postBox.className = 'textPost';
       postBox.textContent = doc.data().post;
+      const postNameUser = document.createElement('h4');
+      postNameUser.textContent = doc.data().name;
+      const postedUser = document.createElement('p');
+      postedUser.textContent = doc.data().title;
 
       // boton de dar like al post
       const buttonHeart = document.createElement('button');
@@ -81,6 +92,7 @@ export const wall = () => {
       buttonTrash.id = 'btnTrash';
 
       // se pinta el post junto botones de eliminar, editar, like
+      postBox.append(postNameUser, postedUser);
       postZoneContainer.append(postBox, buttonHeart, buttonEdit, buttonTrash);
 
       buttonEdit.addEventListener('click', async (e) => {
@@ -111,12 +123,6 @@ export const wall = () => {
     const post = wallPost.value;
     console.log(post);
 
-    createPosts(post)
-      .then(() => {
-        console.log('guardado');
-        wallPost.value = '';
-      }).catch(() => console.log('no se guardo'));
-
     if (!editStatus) {
       createPosts(post);
     } else {
@@ -124,12 +130,20 @@ export const wall = () => {
       deletePosts(id, { post });
       editStatus = false;
     }
+    wallPost.value = '';
   });
 
-  containerWall.append(header, wallFormContainer, postZoneContainer);
-  header.append(imgTitle, title, buttonExit);
-  wallFormContainer.append(wallPost, iconContainer);
+  onAuthStateChanged(auth, (user) => {
+    if (user != null) {
+      profileName.textContent = user.displayName;
+    }
+  });
+
+  header.append(imgTitle, profileName, buttonExit);
+  wallFormContainer.append(title, wallPost, iconContainer);
   iconContainer.append(buttonSend);
+
+  containerWall.append(header, wallFormContainer, postZoneContainer);
 
   return containerWall;
 };

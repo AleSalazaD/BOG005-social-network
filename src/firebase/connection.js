@@ -18,6 +18,7 @@ import {
   deleteDoc,
   updateDoc,
   onSnapshot,
+  query,
 } from 'https://www.gstatic.com/firebasejs/9.10.0/firebase-firestore.js';
 import { onNavigate } from '../main.js';
 
@@ -61,12 +62,18 @@ const signOff = () => signOut(auth);
 const createPosts = async (text) => {
   await addDoc(collection(db, 'Posts'), {
     post: text,
+    like: false,
+    name: auth.currentUser.displayName,
+    email: auth.currentUser.email,
   });
 };
 
 // Se crea la constante que nos permitirá postear
 // recibe una función callback que ejecuta el onSnapshot.
 const onGetPosts = (callback) => onSnapshot(collection(db, 'Posts'), callback);
+
+// funcion para traer los post de firestore al muro
+const postUser = () => query(collection(db, 'Posts'));
 
 // Función para editar posts
 const editPosts = (id) => getDoc(doc(db, 'Posts', id));
@@ -76,6 +83,15 @@ const deletePosts = (id) => deleteDoc(doc(db, 'Posts', id));
 
 // Función para actualizar los post al editarlos
 const updatePosts = (id, newText) => updateDoc(doc(db, 'Posts', id), newText);
+
+// Revisa el estado de autenticacion(dice si estamos conectados)
+onAuthStateChanged(auth, (user) => {
+  if (user != null) {
+    console.log('Usuario Conectado');
+  } else {
+    console.log('No se encuentra el usuario');
+  }
+});
 
 onAuthStateChanged(auth, (user) => {
   if (user) {
@@ -101,4 +117,5 @@ export {
   deletePosts,
   updatePosts,
   onAuthStateChanged,
+  postUser,
 };
