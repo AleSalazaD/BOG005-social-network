@@ -5,7 +5,9 @@ import {
   onGetPosts,
   deletePosts,
   editPosts,
-  // updatePosts,
+  updatePosts,
+  addLikes,
+  removeLikes,
 } from '../firebase/connection.js';
 
 export const wall = () => {
@@ -56,7 +58,8 @@ export const wall = () => {
   postZoneContainer.setAttribute('id', 'postZoneContainer');
 
   let editStatus = false;
-  // let id = '';
+  let idPost = '';
+  const userLikes = [];
 
   onGetPosts((querySnapshot) => {
     postZoneContainer.innerHTML = '';
@@ -69,8 +72,16 @@ export const wall = () => {
 
       // boton de dar like al post
       const buttonHeart = document.createElement('button');
+      buttonHeart.setAttribute('data-id', doc.id);
+      buttonHeart.setAttribute('data-id', window.user.uid);
       buttonHeart.classList.add('buttonIcons');
       buttonHeart.id = 'btnHeart';
+
+      const counterLikes = document.createElement('span');
+      counterLikes.setAttribute('data-likes', 2);
+      counterLikes.textContent = doc.data().likes.length;
+      // console.log(window.user.uid);
+      // console.log(doc.id);
 
       // boton de editar el post
       const buttonEdit = document.createElement('button');
@@ -85,25 +96,41 @@ export const wall = () => {
       buttonTrash.id = 'btnTrash';
 
       // se pinta el post junto botones de eliminar, editar, like
-      postZoneContainer.append(postBox, buttonHeart, buttonEdit, buttonTrash);
+      postZoneContainer.append(postBox, buttonHeart, counterLikes, buttonEdit, buttonTrash);
 
+      // Click para editar
       buttonEdit.addEventListener('click', async (e) => {
         const docId = await editPosts(e.target.dataset.id);
         const postText = docId.data();
-
+        idPost = doc.id;
         wallPost.value = postText.post;
 
         editStatus = true;
-        const id = e.target.dataset.id;
-        console.log(id);
+        console.log(e.target.dataset.id);
       });
 
+      // Click para eliminar
       buttonTrash.addEventListener('click', ({ target: { dataset } }) => {
         deletePosts(dataset.id);
+        console.log(dataset.id);
+      });
+
+      // Click para dar like
+      buttonHeart.addEventListener('click', () => {
+        // console.log('esto es el array', doc.data().likes);
+        const arrayLikes = doc.data().likes;
+        if (!arrayLikes.includes(window.user.uid)) {
+          addLikes(doc.id, window.user.uid);
+        } else {
+          removeLikes(doc.id, window.user.uid);
+        }
+        console.log('postId: ', doc.id);
+        console.log('uid: ', window.user.uid);
       });
     });
   });
 
+  // Click para cerrar sesión
   buttonExit.addEventListener('click', () => {
     signOff().then(() => {
       onNavigate('/');
@@ -112,21 +139,19 @@ export const wall = () => {
     });
   });
 
+  // Click para enviar el post al crearlo o al editarlo
   buttonSend.addEventListener('click', () => {
     const post = wallPost.value;
-    console.log(post);
+    console.log(wallPost.value);
 
-    createPosts(post)
-      .then(() => {
-        console.log('guardado');
-        wallPost.value = '';
-      }).catch(() => console.log('no se guardo'));
+    console.log('guardado');
+    wallPost.value = '';
 
     if (!editStatus) {
-    //   createPosts(post);
-    // } else {
-    //   updatePosts(id, { post });
-    //   deletePosts(id, { post });
+      createPosts(post, userLikes);
+    } else {
+      updatePosts(idPost, { post });
+      deletePosts(idPost, { post });
       editStatus = false;
     }
   });

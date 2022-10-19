@@ -18,6 +18,8 @@ import {
   deleteDoc,
   updateDoc,
   onSnapshot,
+  arrayUnion,
+  arrayRemove,
 } from 'https://www.gstatic.com/firebasejs/9.10.0/firebase-firestore.js';
 import { onNavigate } from '../main.js';
 
@@ -58,9 +60,10 @@ console.log(userProfile);
 const signOff = () => signOut(auth);
 
 // funcion asíncrona para crear el post y enviarlo a firestore
-const createPosts = async (text) => {
-  await addDoc(collection(db, 'Posts'), {
-    post: text,
+const createPosts = (post, likes) => {
+  addDoc(collection(db, 'Posts'), {
+    post,
+    likes,
   });
 };
 
@@ -88,6 +91,12 @@ onAuthStateChanged(auth, (user) => {
   }
 });
 
+// Función para agregar likes a un post
+const addLikes = (id, userId) => updateDoc(doc(db, 'Posts', id), { likes: arrayUnion(userId) });
+
+// Función para retirar likes a un post
+const removeLikes = (id, userId) => updateDoc(doc(db, 'Posts', id), { likes: arrayRemove(userId) });
+
 export {
   auth,
   createUser,
@@ -100,5 +109,7 @@ export {
   editPosts,
   deletePosts,
   updatePosts,
-  onAuthStateChanged,
+  addLikes,
+  removeLikes,
+  // onAuthStateChanged,
 };
