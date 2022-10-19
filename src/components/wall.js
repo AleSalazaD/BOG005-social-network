@@ -26,9 +26,7 @@ export const wall = () => {
   imgTitle.alt = 'Logo';
   imgTitle.id = 'imgTitle';
 
-  // NODO PARA EL USERNAME
-  const profileName = document.createElement('h1');
-  profileName.className = 'userProfile';
+  const profileName = document.createElement('h2');
 
   const title = document.createElement('h1'); // Title
   title.textContent = '¿Qué festividad se celebra hoy en tu ciudad?';
@@ -157,6 +155,7 @@ export const wall = () => {
       createPosts(post, userLikes);
     } else {
       updatePosts(idPost, { post });
+      // deletePosts(idPost, { post });
       editStatus = false;
     }
   });
@@ -168,9 +167,9 @@ export const wall = () => {
   });
 
   containerWall.append(header, mainWall);
-  header.append(imgTitle, profileName, buttonExit);
-  mainWall.append(wallFormContainer, postZoneContainer);
-  wallFormContainer.append(title, wallPost, iconContainer);
+  header.append(imgTitle, title, buttonExit);
+  mainWall.append(profileName, wallFormContainer, postZoneContainer);
+  wallFormContainer.append(wallPost, iconContainer);
   iconContainer.append(buttonSend);
 
   return containerWall;
