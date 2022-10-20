@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 import { onNavigate } from '../main.js';
 import { signInUser } from '../firebase/connection.js';
 
@@ -61,14 +62,27 @@ export const login = () => {
   containerLogin
     .querySelector('.button-login')
     .addEventListener('click', (e) => {
-      console.log('se le dio click al botón');
       e.preventDefault();
       const emailLogin = loginEmail.value;
       const passLogin = loginPassword.value;
 
       signInUser(emailLogin, passLogin)
-        .then(() => onNavigate('/wall'))
-        .catch(() => onNavigate('/login'));
+        .then(() => {
+          onNavigate('/wall');
+          swal({
+            title: 'Excelente',
+            text: 'Ya puedes postear!',
+            icon: 'success',
+          });
+        })
+        .catch(() => {
+          onNavigate('/login');
+          swal({
+            title: 'Oh no, algo salió mal!',
+            text: 'Valida tus datos',
+            icon: 'error',
+          });
+        });
     });
 
   return containerLogin;

@@ -1,7 +1,3 @@
-import {
-  getAuth,
-  onAuthStateChanged,
-} from 'https://www.gstatic.com/firebasejs/9.10.0/firebase-auth.js';
 import { welcome } from './components/welcome.js';
 import { landing } from './components/landing.js';
 import { register } from './components/register.js';
@@ -21,9 +17,7 @@ const routes = {
 export const onNavigate = (pathname, objRoutes = routes) => {
   const divRoot2 = document.getElementById('root');
   window.history.pushState({}, pathname, window.location.origin + pathname);
-  //  remueve el primer nodo (evita que se superpongan las vistas)
-  // divRoot2.removeChild(divRoot.firstChild);
-  // divRoot2.appendChild(objRoutes[pathname]());
+
   divRoot2.replaceChildren(objRoutes[pathname]());
 };
 
@@ -37,15 +31,4 @@ window.onpopstate = () => {
 };
 window.addEventListener('load', () => {
   onNavigate(window.location.pathname);
-});
-// divRoot.appendChild(component());
-
-onAuthStateChanged(getAuth(), (user) => {
-  if (user != null) {
-    console.log('In Firebase');
-    // const uid = user.uid;
-    onNavigate('/wall');
-  } else {
-    onNavigate('/');
-  }
 });

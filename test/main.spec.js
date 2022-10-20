@@ -1,5 +1,5 @@
+import { onNavigate } from '../src/main.js';
 /* eslint-disable jest/no-identical-title */
-import { onNavigate } from '../src/main';
 
 jest.mock('../src/firebase/connection.js');
 
@@ -16,8 +16,8 @@ const mockRoutes1 = {
   '/': mockWelcome,
 };
 
-describe('onNavigate', () => {
-  it('pintar welcome', () => {
+describe('should test welcome view', () => {
+  it('use mockWelcome', () => {
     document.body.innerHTML = '<div id="root"></div>';
     onNavigate('/', mockRoutes1);
     console.log('button: ', document.getElementById('root').textContent);
