@@ -24,7 +24,7 @@
   height: max-content;
 }
 
-.title1 {
+.title-vistas {
   text-align: center;
   margin-top: 25px;
   font-size: 2.5rem;
@@ -100,7 +100,7 @@
 @media screen and (max-width: 1024px) {
 
   /* vista del welcome */
-   .sectionWelcome {
+   #section-welcome {
     display: flex;
     flex-direction: column;
     background: #FFF8EE;
@@ -108,7 +108,11 @@
     padding-top: 5vh;
   }
 
-  .img-background-welcome {
+  #header-welcome {
+    display: block;
+  }
+
+  #background-welcome {
     display: block;
     margin: 0 auto;
     max-width: 100%;
@@ -118,12 +122,12 @@
   #mainTitle {
     text-align: center;
     margin-top: 5vh;
-    font-size: 3rem;
+    font-size: 2rem;
     text-shadow: 2px 2px 5px #FCAB2E;
   }
 
-  #description {
-    font-size: 1.5rem;
+  #description-welcome {
+    font-size: 1rem;
     text-align: center;
     margin-top: 10vh;
     margin-bottom: 8vh;
@@ -279,7 +283,7 @@
 
 @media screen and (min-width: 1025px) {
 /* welcome */
-  .sectionWelcome {
+  #section-welcome {
     /* display: flex;
     flex-direction: row; */
     background: #FFF8EE;
@@ -287,12 +291,13 @@
     padding-top: 2vh;
   }
 
-  .img-background-welcome {
+  #header-welcome {
     display: flex;
+  }
+
+  #background-welcome {
     margin: 0 15vh;
     height: 100%;
-    max-width: 200%;
-    width: 200%;
     justify-content: center;
   }
 

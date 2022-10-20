@@ -2,10 +2,14 @@ import { onNavigate } from '../main.js';
 
 export const welcome = () => {
   const sectionWelcome = document.createElement('section');
-  sectionWelcome.className = 'sectionWelcome';
+  sectionWelcome.id = 'section-welcome';
+  sectionWelcome.className = 'container';
+
+  const headerWelcome = document.createElement('header');
+  headerWelcome.id = 'header-welcome';
 
   const imgWelcome = document.createElement('img');
-  imgWelcome.className = 'backgroundWelcome';
+  imgWelcome.id = 'background-welcome';
   imgWelcome.src = 'img/fondo1.PNG';
   imgWelcome.alt = 'Name';
 
@@ -14,7 +18,7 @@ export const welcome = () => {
   title.id = 'mainTitle';
 
   const message = document.createElement('h2');
-  message.id = 'description';
+  message.id = 'description-welcome';
   message.textContent = 'Comparte con todo el mundo las festividades de tu ciudad y entérate de lo que pasa en otros lugares';
 
   const buttonStart = document.createElement('button');
@@ -24,7 +28,8 @@ export const welcome = () => {
     onNavigate('/landing');
   });
 
-  sectionWelcome.append(imgWelcome, title, message, buttonStart);
+  headerWelcome.append(imgWelcome, title);
+  sectionWelcome.append(headerWelcome, message, buttonStart);
 
   return sectionWelcome;
 };

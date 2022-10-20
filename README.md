@@ -226,7 +226,7 @@ Marcamos los objetivos que hemos alcanzado como equipo
 ### 5.2 Definición de la Red Social
 - [x] **Definición del producto**
 
-[lluiva de ideas](src/img/Definicion_de_producto.png)
+[lluvia de ideas](src/img/Definicion_de_producto.png)
 
 ### 5.3 Definición de las historias de usuario
 - [x] **Historias de usuario**
@@ -266,11 +266,12 @@ Posteriormente plasmamos los prototipos de alta fidelidad a partir de los cuales
 ***
 
 ## 7. Pruebas de usabilidad
-se adjuntan las evidencias de las pruebas de usabilidad realizadas
+[pruebas1](src/img/Maze.1.PNG)
+[pruebas2](src/img/Maze.2.PNG)
 
 ***
 
 ## 8. Trabajo en equipo
-Durante el proyecto conseguimos comprender cómo se articulan las diferentes integrantes de un equipo para conseguir los resultados esperados. Juntas aprendimos a planear alrededor de nuestro tiempo disponible y las herramientas que cada una tenía a disposición, producto de las experiencias pasadas y del aprendizaje personal. Nos vimos enfrentadas a diversos retos técnicos y personales que supimos afrontar, en ocasiones con apoyo de Laboratoria, pero en general con nustros propios recursos internos. Descubrimos muchas cosas sobre nosotras mismas, sobre nuestros límites, sobre nuestro manejo de la frustración, pero sobre todo de nuestro temple, la comunicación asertiva, y nuestros inmensos deseos de aprender juntas a ser mejores desarrolladoras y mejores personas.
+Durante el proyecto conseguimos comprender cómo se articulan las diferentes integrantes de un equipo para conseguir los resultados esperados. Juntas aprendimos a planear alrededor de nuestro tiempo disponible y las herramientas que cada una tenía a disposición, producto de las experiencias pasadas y del aprendizaje personal. Nos vimos enfrentadas a diversos retos técnicos y personales que supimos afrontar, en ocasiones con apoyo de Laboratoria, pero en general con nuestros propios recursos internos. Descubrimos muchas cosas sobre nosotras mismas, sobre nuestros límites, sobre nuestro manejo de la frustración, pero sobre todo de nuestro temple, la comunicación asertiva, y nuestros inmensos deseos de aprender juntas a ser mejores desarrolladoras y mejores personas.
 
 ***

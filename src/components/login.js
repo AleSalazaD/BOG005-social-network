@@ -8,7 +8,7 @@ export const login = () => {
 
   const titleLo = document.createElement('h1');
   titleLo.textContent = 'INICIA SESIÓN';
-  titleLo.className = 'title1';
+  titleLo.className = 'title-vistas';
 
   const imgLogin = document.createElement('img');
   imgLogin.className = 'img-world';

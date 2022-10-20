@@ -12,7 +12,7 @@ export const landing = () => {
 
   const title = document.createElement('h1');
   title.textContent = 'REGÍSTRATE';
-  title.className = 'title1';
+  title.className = 'title-vistas';
 
   const buttonRegisterG = document.createElement('button');
   buttonRegisterG.textContent = '   Registrarse con Google';

@@ -13,7 +13,7 @@ export const register = () => {
 
   const title = document.createElement('h1');
   title.textContent = 'REGÍSTRATE';
-  title.className = 'title1';
+  title.className = 'title-vistas';
 
   const registerForm = document.createElement('section');
   registerForm.classList.add('formRegister');
