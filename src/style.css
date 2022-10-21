@@ -5,7 +5,7 @@
   font-family: "Exo 2", sans-serif;
 }
 
-/* Selectores universales del proyecto */
+/* GENERAL PROJECT SELECTORS */
 .container {
   display: flex;
   position: absolute;
@@ -24,7 +24,7 @@
   height: max-content;
 }
 
-.title1 {
+.title-vistas {
   text-align: center;
   margin-top: 25px;
   font-size: 2.5rem;
@@ -96,19 +96,22 @@
   outline: 0 none;
 }
 
-/*tamaño celular*/
+/* MOBILE SIZE*/
 @media screen and (max-width: 1024px) {
 
-  /* vista del welcome */
-   .sectionWelcome {
+  /* MOBILE WELCOME VIEW */
+   #section-welcome {
     display: flex;
     flex-direction: column;
     background: #FFF8EE;
-    height: 110vh;
-    padding-top: 5vh;
+    padding-top: 2vh;
   }
 
-  .img-background-welcome {
+  #header-welcome {
+    display: block;
+  }
+
+  #background-welcome {
     display: block;
     margin: 0 auto;
     max-width: 100%;
@@ -118,12 +121,12 @@
   #mainTitle {
     text-align: center;
     margin-top: 5vh;
-    font-size: 3rem;
+    font-size: 2rem;
     text-shadow: 2px 2px 5px #FCAB2E;
   }
 
-  #description {
-    font-size: 1.5rem;
+  #description-welcome {
+    font-size: 1rem;
     text-align: center;
     margin-top: 10vh;
     margin-bottom: 8vh;
@@ -133,7 +136,7 @@
     color:#515050
   }
 
-  /* vista del register */
+  /* MOBILE REGISTER VIEW */
    .question {
     margin-top: 4vh;
     font-size: 1rem;
@@ -141,7 +144,7 @@
     text-transform: none;
   }
 
-  /* vista del login */
+  /* LOGIN REGISTER VIEW */
 
   .link {
     text-align: center;
@@ -149,36 +152,44 @@
     color: #050dfa;
   }
 
-  /* vistas del landing */
+  /* MOBILE LANDING VIEW */
   #buttonStartRegister {
     margin-top: 20px;
   }
 
-  /* vista del wall */
+  /* MOBILE WALL VIEW */
   .header {
     display: grid;
-    justify-content: space-between;
     grid-template-columns: auto auto auto;
+    justify-content: space-between;
     padding: 2vh 3vh;
-    /* gap: 15vh; */
   }
 
   #imgTitle {
+    grid-column-start: 1;
+    grid-column-end: 1;
     position: relative;
-    width: 16vh;
-    height: 11vh;
+    width: 18vh;
+    height: 13vh;
     transform: rotate(-25deg);
     top: 15px;
-    right: 20px;
   }
 
   #titleWall {
-    font-size: 1.5rem;
+    /* grid area syntax: grid-row-start / grid-column-start / grid-row-end / grid-column-end */
+    grid-area: 2 / 1 / 2 / 3; 
+    font-size: 1.2rem;
     text-shadow: 2px 2px 5px #FCAB2E;
     text-align: center;
     margin: 10px 10px;
-    padding-right: 3vh;
+    padding-left: 3vh;
     margin-top: 3vh;
+  }
+
+  #user-name {
+    font-size: 1rem;
+    margin-bottom: 5vh;
+    text-align: center;
   }
 
   .wallForm {
@@ -199,7 +210,7 @@
     outline: 0 none;
   }
 
-  #iconContainer {
+  #send-container {
     display: flex;
     justify-content: right;
     padding: 0.5vh;
@@ -209,26 +220,23 @@
   }
 
   #postZoneContainer {
-    /* padding-bottom: 12vh; */
-    /* padding-left: 10vh; */
-    padding-right: 10vh;
-    position: relative;
+    padding-right: 5vh;
+    padding-left: 5vh;
     border-radius: 20px;
-    /* width: 80vh; */
     height: auto;
   }
 
-  /* estilo para los botones que contienen iconos */
+  /* MOBILE ICON BUTTONS */
   .buttonIcons {
     width: 6vh;
     height: 6vh;
-    /* justify-items: right; */
     background-color: transparent;
     border: transparent;
   }
 
   #btnExit {
-    grid-column: 3 / span 1;
+    grid-column-start: 3;
+    grid-column-end: 3;
     background-image: url('img/exit.png');
     background-repeat: no-repeat;
   }
@@ -243,75 +251,63 @@
   .textPost {
     font-size: 1rem;
     text-align: center;
-    
-  }
-
-  #crudIcons {
-    display: flex;
-    gap: 10%;
-    justify-content: center;
-    background-repeat: no-repeat;
+    text-align: justify;
   }
 
   #btnHeart {
     background-image: url('img/heart.png');
     background-repeat: no-repeat;
-    /* position: absolute; */
-    /* bottom: 1vh; */
-    /* right: 35vh; */
+  }
+
+  #counter {
+    padding: 2vh;
   }
 
   #btnEdit {
     background-image: url('img/edit.png');
     background-repeat: no-repeat;
-    /* position: absolute; */
-    /* bottom: 1vh; */
-    /* right: 15vh; */
   }
 
   #btnTrash {
     background-image: url('img/trash.png');
     background-repeat: no-repeat;
-    /* position: absolute; */
-    /* left: 35vh; */
   }
 }
 
 @media screen and (min-width: 1025px) {
-/* welcome */
-  .sectionWelcome {
-    /* display: flex;
-    flex-direction: row; */
+
+/* DESKTOP WELCOME VIEW */
+  #section-welcome {
     background: #FFF8EE;
     height: 100vh;
-    padding-top: 2vh;
+    padding-top: 1vh;
   }
 
-  .img-background-welcome {
+  #header-welcome {
     display: flex;
+  }
+
+  #background-welcome {
     margin: 0 15vh;
     height: 100%;
-    max-width: 200%;
-    width: 200%;
     justify-content: center;
   }
 
   #mainTitle {
     text-align: center;
-    margin-top: 5vh;
-    font-size: 4rem;
+    margin-top: 15vh;
+    font-size: 3rem;
     text-shadow: 2px 2px 10px #FCAB2E;
   }
   
-  #description {
+  #description-welcome {
     font-size: 2rem;
     text-align: center;
-    margin-top: 5vh;
-    margin-bottom: 8vh;
+    margin: 15vh 10vh 8vh 10vh;
     color:#515050
   }
   
-  /* Register */
+  /* DESKTOP REGISTER VIEW */
   #buttonStartRegister {
     margin-top: 20px;
   }
@@ -329,14 +325,12 @@
     color: #2605fa;
   }
 
-  /* vista del wall */
+  /* DESKTOP WALL VIEW */
   .header {
     display: grid;
     justify-content: space-between;
     grid-template-columns: auto auto auto;
     padding: 2vh 3vh;
-    /* gap: 170vh; */
-    
   }
 
   #imgTitle {
@@ -350,7 +344,8 @@
 
   #titleWall {
     text-align: center;
-    font-size: 2.8rem;
+    padding-top: 10vh;
+    font-size: 3.2rem;
     text-shadow: 2px 2px 5px #FCAB2E;
   }
 
@@ -361,7 +356,7 @@
   }
 
   .wallForm {
-    padding: 5vh;
+    padding: 5vh 5vh 1vh 5vh;
     width: 60%;
   }
 
@@ -380,7 +375,7 @@
     outline: 0 none;
   }
 
-  #iconContainer {
+  #send-container {
     display: flex;
     justify-content: right;
     padding: 0.5vh;
@@ -398,11 +393,10 @@
     padding-left: 10vh;
     padding-right: 10vh;
     position: relative;
-    /* width: 100%; */
     height: auto;
   }
 
-  /* estilo para los botones que contienen iconos */
+  /* DESKTOP ICON BUTTONS */
   .buttonIcons {
     width: 6vh;
     height: 6vh;
@@ -420,50 +414,33 @@
   #btnSend {
     background-image: url('img/send.png');
     background-repeat: no-repeat;
-
-    /* margin-bottom: 1vh; */
-    /* margin-left: 35vh; */
   }
 
   .textPost {
-    /* margin: 0 2vh 5vh 0; */
     grid-column-start: 1;
     grid-column-end: 6;
     font-size: 1.5rem;
-    /* text-align: center; */
+    text-align: justify;
   }
 
-  #crudIcons {
+  /* #crudIcons {
     display: flex;
-    /* gap: 20%; */
     justify-content: center;
-  }
+  } */
 
   #btnHeart {
     background-image: url('img/heart.png');
     background-repeat: no-repeat;
-    /* position: absolute; */
-    /* bottom: 1vh; */
-    /* right: 35vh; */
-  }
-
-  span {
-    top: -8px;
   }
 
   #btnEdit {
     background-image: url('img/edit.png');
     background-repeat: no-repeat;
-    /* position: absolute; */
-    /* bottom: 1vh; */
-    /* right: 15vh; */
   }
 
   #btnTrash {
     background-image: url('img/trash.png');
     background-repeat: no-repeat;
-    /* position: absolute; */
-    /* left: 35vh; */
   }
 }
   

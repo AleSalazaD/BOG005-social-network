@@ -1,4 +1,4 @@
-// import { onNavigate } from '../main.js';
+/* eslint-disable no-undef */
 import { createUser, userProfile } from '../firebase/connection.js';
 import { onNavigate } from '../main.js';
 
@@ -13,7 +13,7 @@ export const register = () => {
 
   const title = document.createElement('h1');
   title.textContent = 'REGÍSTRATE';
-  title.className = 'title1';
+  title.className = 'title-vistas';
 
   const registerForm = document.createElement('section');
   registerForm.classList.add('formRegister');
@@ -55,17 +55,22 @@ export const register = () => {
     const emailRegister = registerEmail.value;
     const passRegister = registerPassword.value;
     const userRegister = userName.value;
-    console.log(emailRegister, passRegister, userRegister);
 
     createUser(emailRegister, passRegister)
       .then(() => {
-        // const user = credential.user;
         userProfile(userRegister);
-        // console.log(credential.user);
-        // onNavigate('/wall');
+        swal({
+          title: 'Excelente',
+          text: 'Ya puedes postear!',
+          icon: 'success',
+        });
       })
       .catch(() => {
-        console.log('fail');
+        swal({
+          title: 'Oh no, algo salió mal!',
+          text: 'Intenta de nuevo',
+          icon: 'error',
+        });
       });
     return createUser;
   });

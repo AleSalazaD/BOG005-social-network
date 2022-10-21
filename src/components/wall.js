@@ -27,9 +27,10 @@ export const wall = () => {
   imgTitle.id = 'imgTitle';
 
   const profileName = document.createElement('h2');
+  profileName.id = 'user-name';
 
   const title = document.createElement('h1'); // Title
-  title.textContent = '¿Qué festividad se celebra hoy en tu ciudad?';
+  title.textContent = '¿Qué festividad estás celebrando?';
   title.id = 'titleWall';
 
   const buttonExit = document.createElement('button'); // Buton icon exit
@@ -52,7 +53,7 @@ export const wall = () => {
   wallPost.setAttribute('placeholder', ' Tu post aquí');
 
   const iconContainer = document.createElement('article'); // container for send icon
-  iconContainer.setAttribute('id', 'iconContainer');
+  iconContainer.setAttribute('id', 'send-container');
 
   const buttonSend = document.createElement('button'); // send button icon
   buttonSend.classList.add('buttonIcons');
@@ -82,10 +83,9 @@ export const wall = () => {
       buttonHeart.id = 'btnHeart';
 
       const counterLikes = document.createElement('span');
+      counterLikes.id = 'counter';
       counterLikes.setAttribute('data-likes', 2);
       counterLikes.textContent = doc.data().likes.length;
-      // console.log(window.user.uid);
-      // console.log(doc.id);
 
       // boton de editar el post
       const buttonEdit = document.createElement('button');
@@ -110,26 +110,21 @@ export const wall = () => {
         wallPost.value = postText.post;
 
         editStatus = true;
-        console.log(e.target.dataset.id);
       });
 
       // Click para eliminar
       buttonTrash.addEventListener('click', ({ target: { dataset } }) => {
         deletePosts(dataset.id);
-        console.log(dataset.id);
       });
 
       // Click para dar like
       buttonHeart.addEventListener('click', () => {
-        // console.log('esto es el array', doc.data().likes);
         const arrayLikes = doc.data().likes;
         if (!arrayLikes.includes(window.user.uid)) {
           addLikes(doc.id, window.user.uid);
         } else {
           removeLikes(doc.id, window.user.uid);
         }
-        console.log('postId: ', doc.id);
-        console.log('uid: ', window.user.uid);
       });
     });
   });
@@ -138,24 +133,20 @@ export const wall = () => {
   buttonExit.addEventListener('click', () => {
     signOff().then(() => {
       onNavigate('/');
-    }).catch((error) => {
-      console.log(error, 'Algo pasó');
+    }).catch(() => {
     });
   });
 
   // Click para enviar el post al crearlo o al editarlo
   buttonSend.addEventListener('click', () => {
     const post = wallPost.value;
-    console.log(wallPost.value);
 
-    console.log('guardado');
     wallPost.value = '';
 
     if (!editStatus) {
       createPosts(post, userLikes);
     } else {
       updatePosts(idPost, { post });
-      // deletePosts(idPost, { post });
       editStatus = false;
     }
   });

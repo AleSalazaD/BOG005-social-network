@@ -1,4 +1,5 @@
 import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.10.0/firebase-app.js';
+
 import {
   getAuth,
   createUserWithEmailAndPassword,
@@ -9,6 +10,7 @@ import {
   updateProfile,
   signOut,
 } from 'https://www.gstatic.com/firebasejs/9.10.0/firebase-auth.js';
+
 import {
   getFirestore,
   collection,
@@ -21,6 +23,7 @@ import {
   arrayUnion,
   arrayRemove,
 } from 'https://www.gstatic.com/firebasejs/9.10.0/firebase-firestore.js';
+
 import { onNavigate } from '../main.js';
 
 const firebaseConfig = {
@@ -34,17 +37,18 @@ const firebaseConfig = {
   measurementId: 'G-DWY854X4RL',
 };
 
+// Funciones de Firebase para inicializar servicios
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const db = getFirestore();
 
-// función crear usuario con email
+// Función crear usuario con email
 const createUser = (email, password) => createUserWithEmailAndPassword(auth, email, password);
 
-// función de ingresar usuario
+// Función ingresar usuario
 const signInUser = (email, password) => signInWithEmailAndPassword(auth, email, password);
 
-// función de ingreso con google
+// Función ingresar con Google
 const provider = new GoogleAuthProvider();
 const googleSignIn = () => signInWithPopup(auth, provider)
   .then(() => {
@@ -52,14 +56,13 @@ const googleSignIn = () => signInWithPopup(auth, provider)
   })
   .catch(() => { });
 
-// función para crear nombre de usuario
+// Función crear nombre de usuario
 const userProfile = (user, displayName) => updateProfile(user, { displayName });
-console.log(userProfile);
 
-// función de cerrar cesión
+// Función cerrar cesión
 const signOff = () => signOut(auth);
 
-// funcion asíncrona para crear el post y enviarlo a firestore
+// Función crear el post y enviarlo a Firestore
 const createPosts = (post, likes) => {
   addDoc(collection(db, 'Posts'), {
     post,
@@ -67,34 +70,32 @@ const createPosts = (post, likes) => {
   });
 };
 
-// Se crea la constante que nos permitirá postear
-// recibe una función callback que ejecuta el onSnapshot.
+// Función que crea una instantánea del documento actualizándolo con cada llamada.
 const onGetPosts = (callback) => onSnapshot(collection(db, 'Posts'), callback);
 
-// Función para editar posts
+// Función editar posts
 const editPosts = (id) => getDoc(doc(db, 'Posts', id));
 
-// Función para eliminar post
+// Función eliminar post
 const deletePosts = (id) => deleteDoc(doc(db, 'Posts', id));
 
-// Función para actualizar los post al editarlos
+// Función actualizar los post al editarlos
 const updatePosts = (id, newText) => updateDoc(doc(db, 'Posts', id), newText);
 
+// Función que determina el estado de conexión del usuario
 onAuthStateChanged(auth, (user) => {
   if (user) {
     window.user = user;
-    console.log(user);
     onNavigate('/wall');
   } else {
-    console.log('No es user');
     onNavigate('/');
   }
 });
 
-// Función para agregar likes a un post
+// Función agregar like a un post
 const addLikes = (id, userId) => updateDoc(doc(db, 'Posts', id), { likes: arrayUnion(userId) });
 
-// Función para retirar likes a un post
+// Función retirar like a un post
 const removeLikes = (id, userId) => updateDoc(doc(db, 'Posts', id), { likes: arrayRemove(userId) });
 
 export {
