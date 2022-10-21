@@ -166,21 +166,30 @@
   }
 
   #imgTitle {
+    grid-column-start: 1;
+    grid-column-end: 1;
     position: relative;
-    width: 16vh;
-    height: 11vh;
+    width: 18vh;
+    height: 13vh;
     transform: rotate(-25deg);
     top: 15px;
-    right: 20px;
   }
 
   #titleWall {
-    font-size: 1rem;
+    /* grid area syntax: grid-row-start / grid-column-start / grid-row-end / grid-column-end */
+    grid-area: 2 / 1 / 2 / 3; 
+    font-size: 1.2rem;
     text-shadow: 2px 2px 5px #FCAB2E;
     text-align: center;
     margin: 10px 10px;
-    padding-right: 3vh;
+    padding-left: 3vh;
     margin-top: 3vh;
+  }
+
+  #user-name {
+    font-size: 1rem;
+    margin-bottom: 5vh;
+    text-align: center;
   }
 
   .wallForm {
@@ -201,7 +210,7 @@
     outline: 0 none;
   }
 
-  #iconContainer {
+  #send-container {
     display: flex;
     justify-content: right;
     padding: 0.5vh;
@@ -211,23 +220,23 @@
   }
 
   #postZoneContainer {
-    padding-right: 10vh;
-    position: relative;
+    padding-right: 5vh;
+    padding-left: 5vh;
     border-radius: 20px;
     height: auto;
   }
 
-  /* ICON BUTTONS */
+  /* MOBILE ICON BUTTONS */
   .buttonIcons {
     width: 6vh;
     height: 6vh;
-    /* justify-items: right; */
     background-color: transparent;
     border: transparent;
   }
 
   #btnExit {
-    grid-column: 3 / span 1;
+    grid-column-start: 3;
+    grid-column-end: 3;
     background-image: url('img/exit.png');
     background-repeat: no-repeat;
   }
@@ -242,37 +251,26 @@
   .textPost {
     font-size: 1rem;
     text-align: center;
-    
-  }
-
-  #crudIcons {
-    display: flex;
-    gap: 10%;
-    justify-content: center;
-    background-repeat: no-repeat;
+    text-align: justify;
   }
 
   #btnHeart {
     background-image: url('img/heart.png');
     background-repeat: no-repeat;
-    /* position: absolute; */
-    /* bottom: 1vh; */
-    /* right: 35vh; */
+  }
+
+  #counter {
+    padding: 2vh;
   }
 
   #btnEdit {
     background-image: url('img/edit.png');
     background-repeat: no-repeat;
-    /* position: absolute; */
-    /* bottom: 1vh; */
-    /* right: 15vh; */
   }
 
   #btnTrash {
     background-image: url('img/trash.png');
     background-repeat: no-repeat;
-    /* position: absolute; */
-    /* left: 35vh; */
   }
 }
 
@@ -346,7 +344,8 @@
 
   #titleWall {
     text-align: center;
-    font-size: 2.8rem;
+    padding-top: 10vh;
+    font-size: 3.2rem;
     text-shadow: 2px 2px 5px #FCAB2E;
   }
 
@@ -376,7 +375,7 @@
     outline: 0 none;
   }
 
-  #iconContainer {
+  #send-container {
     display: flex;
     justify-content: right;
     padding: 0.5vh;
@@ -421,20 +420,17 @@
     grid-column-start: 1;
     grid-column-end: 6;
     font-size: 1.5rem;
+    text-align: justify;
   }
 
-  #crudIcons {
+  /* #crudIcons {
     display: flex;
     justify-content: center;
-  }
+  } */
 
   #btnHeart {
     background-image: url('img/heart.png');
     background-repeat: no-repeat;
-  }
-
-  span {
-    top: -8px;
   }
 
   #btnEdit {

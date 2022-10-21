@@ -27,9 +27,10 @@ export const wall = () => {
   imgTitle.id = 'imgTitle';
 
   const profileName = document.createElement('h2');
+  profileName.id = 'user-name';
 
   const title = document.createElement('h1'); // Title
-  title.textContent = '¿Qué festividad se celebra hoy en tu ciudad?';
+  title.textContent = '¿Qué festividad estás celebrando?';
   title.id = 'titleWall';
 
   const buttonExit = document.createElement('button'); // Buton icon exit
@@ -52,7 +53,7 @@ export const wall = () => {
   wallPost.setAttribute('placeholder', ' Tu post aquí');
 
   const iconContainer = document.createElement('article'); // container for send icon
-  iconContainer.setAttribute('id', 'iconContainer');
+  iconContainer.setAttribute('id', 'send-container');
 
   const buttonSend = document.createElement('button'); // send button icon
   buttonSend.classList.add('buttonIcons');
@@ -82,6 +83,7 @@ export const wall = () => {
       buttonHeart.id = 'btnHeart';
 
       const counterLikes = document.createElement('span');
+      counterLikes.id = 'counter';
       counterLikes.setAttribute('data-likes', 2);
       counterLikes.textContent = doc.data().likes.length;
 
